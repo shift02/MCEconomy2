@@ -1,0 +1,13 @@
+/eclipse
+/bin
+/.classpath
+/.settings
+/.gradle
+/src/api
+MinecraftForge-License.txt
+README.txt
+CREDITS-fml.txt
+.project
+LICENSE-fml.txt
+MinecraftForge-Credits.txt
+forge-1.7.10-10.13.4.1448-1.7.10-changelog.txt

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mceconomy2",
+  "name": "MCEconomy 2",
+  "description": "Minecraft‚É‚¨‹à‚ÌŠT”O‚ğ’Ç‰Á‚µ‚Ü‚·B",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://twitter.com/shift02ss",
+  "updateUrl": "",
+  "authorList": ["Shift"],
+  "credits": "Shift",
+  "logoFile": "./assets/mceconomy2/logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
