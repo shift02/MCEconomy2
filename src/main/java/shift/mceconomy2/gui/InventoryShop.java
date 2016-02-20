@@ -4,95 +4,78 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import shift.mceconomy2.api.MCEconomyAPI;
-import shift.mceconomy2.api.shop.IProductItem;
-import shift.mceconomy2.api.shop.IProductList;
+import shift.mceconomy2.api.shop.IProduct;
+import shift.mceconomy2.api.shop.IShop;
 
-public class InventoryShop implements IInventory{
+public class InventoryShop implements IInventory {
 
-	private final IProductList theMerchant;
+    private final IShop theShop;
     private final ItemStack[] theInventory = new ItemStack[1];
     private final EntityPlayer thePlayer;
-    private IProductItem currentRecipe;
+    private IProduct currentRecipe;
     int currentRecipeIndex;
 
-	public InventoryShop(EntityPlayer par1EntityPlayer, IProductList par2IMerchant)
-    {
+    public InventoryShop(EntityPlayer par1EntityPlayer, IShop par2IMerchant) {
         this.thePlayer = par1EntityPlayer;
-        this.theMerchant = par2IMerchant;
+        this.theShop = par2IMerchant;
     }
 
-	@Override
-	public int getSizeInventory()
-    {
+    @Override
+    public int getSizeInventory() {
         return this.theInventory.length;
     }
 
-	@Override
-	public ItemStack getStackInSlot(int par1)
-    {
+    @Override
+    public ItemStack getStackInSlot(int par1) {
         return this.theInventory[par1];
     }
 
-	@Override
-	public ItemStack decrStackSize(int par1, int par2)
-    {
-		if (this.theInventory[par1] != null)
-        {
+    @Override
+    public ItemStack decrStackSize(int par1, int par2) {
+        if (this.theInventory[par1] != null) {
             ItemStack itemstack;
 
-            if (this.theInventory[par1].stackSize <= par2)
-            {
+            if (this.theInventory[par1].stackSize <= par2) {
                 itemstack = this.theInventory[par1];
                 this.theInventory[par1] = null;
                 this.markDirty();
                 return itemstack;
-            }
-            else
-            {
+            } else {
                 itemstack = this.theInventory[par1].splitStack(par2);
 
-                if (this.theInventory[par1].stackSize == 0)
-                {
+                if (this.theInventory[par1].stackSize == 0) {
                     this.theInventory[par1] = null;
                 }
 
                 this.markDirty();
                 return itemstack;
             }
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int par1)
-    {
-        if (this.theInventory[par1] != null)
-        {
+    @Override
+    public ItemStack getStackInSlotOnClosing(int par1) {
+        if (this.theInventory[par1] != null) {
             ItemStack itemstack = this.theInventory[par1];
             this.theInventory[par1] = null;
             this.resetSlots();
             return itemstack;
 
-        }
-        else
-        {
-        	this.resetSlots();
+        } else {
+            this.resetSlots();
             return null;
 
         }
 
     }
 
-	@Override
-	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
-    {
+    @Override
+    public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
         this.theInventory[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
-        {
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
 
@@ -103,56 +86,51 @@ public class InventoryShop implements IInventory{
         }*/
     }
 
-	@Override
-	public String getInventoryName()
-    {
-        return theMerchant.getProductListName();
+    @Override
+    public String getInventoryName() {
+        return theShop.getShopName(thePlayer.worldObj, thePlayer);
     }
 
-	@Override
-	public boolean hasCustomInventoryName()
-    {
+    @Override
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
     @Override
-	public int getInventoryStackLimit()
-    {
+    public int getInventoryStackLimit() {
         return 64;
     }
 
     @Override
-	public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
-    {
+    public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
         return true;//this.theMerchant.getCustomer() == par1EntityPlayer;
     }
 
     @Override
-	public void openInventory() {}
+    public void openInventory() {
+    }
 
     @Override
-	public void closeInventory() {}
+    public void closeInventory() {
+    }
 
     @Override
-	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
-    {
+    public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
         return true;
     }
 
     @Override
-	public void markDirty()
-    {
+    public void markDirty() {
         this.resetSlots();
     }
 
     //public EntityClientPlayerMP thePlayer2 = FMLClientHandler.instance().getClient().thePlayer;
 
-    public void resetSlots()
-    {
+    public void resetSlots() {
 
-    	IProductItem item = theMerchant.getProductList().get(currentRecipeIndex);
+        IProduct item = theShop.getProductList(thePlayer.worldObj, thePlayer).get(currentRecipeIndex);
 
-    	int money = MCEconomyAPI.getPlayerMP(thePlayer);
+        int money = MCEconomyAPI.getPlayerMP(thePlayer);
 
         /*if(thePlayer!=null){
         	NBTTagCompound nbt = thePlayer.getEntityData();
@@ -164,27 +142,21 @@ public class InventoryShop implements IInventory{
         	System.out.println("resetSlots0"+money);
         }*/
 
-        if(money>=item.getcost()){
-        	this.setInventorySlotContents(0, item.getProductItem().copy());
-        	//System.out.println("resetSlots");
-        }else{
-        	this.setInventorySlotContents(0, (ItemStack)null);
+        if (money >= item.getCost(theShop, thePlayer.worldObj, thePlayer) && item.canBuy(theShop, thePlayer.worldObj, thePlayer)) {
+            this.setInventorySlotContents(0, item.getItem(theShop, thePlayer.worldObj, thePlayer).copy());
+            //System.out.println("resetSlots");
+        } else {
+            this.setInventorySlotContents(0, (ItemStack) null);
 
-        	//System.out.println("resetSlots2");
+            //System.out.println("resetSlots2");
         }
         //System.out.println("resetSlots");
 
     }
 
-    public void setCurrentRecipeIndex(int par1)
-    {
+    public void setCurrentRecipeIndex(int par1) {
         this.currentRecipeIndex = par1;
         this.resetSlots();
     }
-
-
-
-
-
 
 }

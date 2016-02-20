@@ -1,39 +1,45 @@
 package shift.mceconomy2;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import shift.mceconomy2.api.MCEconomyAPI;
-import shift.mceconomy2.api.shop.IProductList;
+import shift.mceconomy2.api.shop.IShop;
 import shift.mceconomy2.gui.ContainerShop;
 import shift.mceconomy2.gui.GuiShop;
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class MCEGuiHandler implements IGuiHandler {
 
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-		IProductList p = MCEconomyAPI.ShopManager.getProductList(ID);
+        IShop shop = MCEconomyAPI.ShopManager.getShop(ID);
 
-		if(p!=null){
-			return new ContainerShop(player.inventory, p,world);
-		}
-		return null;
+        if (shop != null) {
 
+            //Event用ラッパークラスに差し替え
+            //VariableProductList list = new VariableProductList(player, p);
 
+            return new ContainerShop(player, shop, world);
+        }
+        return null;
 
-	}
+    }
 
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-		IProductList p = MCEconomyAPI.ShopManager.getProductList(ID);
+        IShop shop = MCEconomyAPI.ShopManager.getShop(ID);
 
-		if(p!=null){
-			return new GuiShop(player.inventory, p, ID, world);
-		}
-		return null;
+        if (shop != null) {
 
-	}
+            //Event用ラッパークラスに差し替え
+            //VariableProductList list = new VariableProductList(player, p);
+
+            return new GuiShop(player, shop, ID, world);
+        }
+        return null;
+
+    }
 
 }

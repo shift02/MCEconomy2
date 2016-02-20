@@ -8,37 +8,42 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-
 /**
  * Shopを管理するClass
  * @author Shift02
  */
 public interface IShopManager {
 
-	public int registerProductList(IProductList list);
+    public int registerProductList(IProductList list);
 
-	public IProductList getProductList(int id);
+    public IProductList getProductList(int id);
 
-	public ArrayList<IProductList> getProductLists();
+    public ArrayList<IProductList> getProductLists();
 
-	public void openShopGui(int id, EntityPlayer player, World world, int x, int y, int z);
+    public int registerShop(IShop list);
 
-	public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer);
+    public IShop getShop(int id);
 
-	public int getPurchase(ItemStack item);
+    public ArrayList<IShop> getShops();
 
-	public boolean hasPurchase(ItemStack item);
+    public void openShopGui(int id, EntityPlayer player, World world, int x, int y, int z);
 
-	public void addPurchaseFluid(Fluid fluid, double mp);
+    public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer);
 
-	public double getFluidPurchase(Fluid fluid);
+    public int getPurchase(ItemStack item);
 
-	public boolean hasFluidPurchase(Fluid fluid);
+    public boolean hasPurchase(ItemStack item);
 
-	public void addPurchaseEntity(Class<? extends Entity> class1, int mp);
+    public void addPurchaseFluid(Fluid fluid, double mp);
 
-	public int getEntityPurchase(Entity entity);
+    public double getFluidPurchase(Fluid fluid);
 
-	public boolean hasEntityPurchase(Entity entity);
+    public boolean hasFluidPurchase(Fluid fluid);
+
+    public void addPurchaseEntity(Class<? extends Entity> class1, int mp);
+
+    public int getEntityPurchase(Entity entity);
+
+    public boolean hasEntityPurchase(Entity entity);
 
 }
