@@ -1,8 +1,5 @@
 package shift.mceconomy2.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -11,8 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import shift.mceconomy2.api.shop.IShop;
-import shift.mceconomy2.packet.PacketHandler;
-import shift.mceconomy2.packet.PacketShopButton;
 
 public class ContainerShop extends Container {
 
@@ -43,17 +38,6 @@ public class ContainerShop extends Container {
         }
 
         this.setCurrentRecipeIndex(0);
-        ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
-        DataOutputStream dataoutputstream = new DataOutputStream(bytearrayoutputstream);
-
-        try {
-            dataoutputstream.writeInt(0);
-            PacketHandler.INSTANCE.sendToServer(new PacketShopButton(0));
-            //FMLClientHandler.instance().getClient().getNetHandler().addToSendQueue(new Packet250CustomPayload(MCEconomy.channels2, bytearrayoutputstream.toByteArray()));
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-
     }
 
     @Override
