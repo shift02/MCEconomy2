@@ -1,7 +1,5 @@
 package shift.mceconomy2.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -69,8 +67,6 @@ public class GuiShop extends GuiContainer {
             int i1 = this.currentRecipeIndex;
             IProduct ProductItem = ProductItemlist.get(i1);
 
-            ItemStack itemstack2 = ProductItem.getItem(theIProductList, this.mc.theWorld, this.mc.thePlayer);
-
             this.fontRendererObj.drawString("Cost", 46, 25, 4210752);
             this.fontRendererObj.drawString(ProductItem.getCost(theIProductList, this.mc.theWorld, this.mc.thePlayer) + " MP", 46, 34, 4210752);
             //this.fontRenderer.drawString(I18n.getString(itemstack2.getDisplayName()), 45,  38, 4210752);
@@ -104,16 +100,8 @@ public class GuiShop extends GuiContainer {
 
         if (flag) {
             ((ContainerShop) this.inventorySlots).setCurrentRecipeIndex(this.currentRecipeIndex);
-            ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
-            DataOutputStream dataoutputstream = new DataOutputStream(bytearrayoutputstream);
 
-            try {
-                dataoutputstream.writeInt(this.currentRecipeIndex);
-                PacketHandler.INSTANCE.sendToServer(new PacketShopButton(this.currentRecipeIndex));
-                //this.mc.getNetHandler().addToSendQueue(new Packet250CustomPayload(MCEconomy.channels2, bytearrayoutputstream.toByteArray()));
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
+            PacketHandler.INSTANCE.sendToServer(new PacketShopButton(this.currentRecipeIndex));
         }
     }
 
@@ -155,12 +143,12 @@ public class GuiShop extends GuiContainer {
 
         int a = -3;
 
-        drawTexturedModalRect(k + (86 + 65) + a, l + 67, 0, 18, 9, 9);
-        drawTexturedModalRect(k + (86 + 74) + a, l + 67, 9, 18, 9, 9);
+        drawTexturedModalRect(k + 86 + 65 + a, l + 67, 0, 18, 9, 9);
+        drawTexturedModalRect(k + 86 + 74 + a, l + 67, 9, 18, 9, 9);
 
         int money = MCEconomyAPI.getPlayerMP(mc.thePlayer);
 
-        k += (86 + 56) + a;
+        k += 86 + 56 + a;
 
         for (int i = 1; i <= String.valueOf(money).length(); i += 1) {
             String s = String.valueOf(money).substring(String.valueOf(money).length() - i, String.valueOf(money).length() - i + 1);
