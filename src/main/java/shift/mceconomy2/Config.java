@@ -34,7 +34,7 @@ public class Config {
     public static void ConfigForMCEconomy(Configuration cfg) {
 
         //maxMP = cfg.getInt("Player_MP_MAX", "general", 1000000, 0, 9999999, "");
-        maxMP = cfg.getInt("Player_MP_MAX", "general", 100000000, 0, 999999999, "");
+        maxMP = cfg.getInt("Player_MP_MAX", "general", 999999999, 0, 2147483647, "");
 
         HUD = cfg.getBoolean("MP", "general", true, "");
 

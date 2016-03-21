@@ -114,39 +114,49 @@ public class HUDMP {
             money = MPManager.getEntityPropertieMP(mc.thePlayer).getMp();
         }
 
+        //金持ち
+        int m = 0;
+        if (String.valueOf(money).length() == 8) {
+            m = -8;
+        } else if (String.valueOf(money).length() == 9) {
+            m = -16;
+        } else if (String.valueOf(money).length() == 10) {
+            m = -24;
+        }
+
         //if (money <= 10000000)
-        drawTexturedModalRect(left, top, 9, 0, 9, 9);
-        drawTexturedModalRect(left + 65, top, 0, 18, 9, 9);
-        drawTexturedModalRect(left + 74, top, 9, 18, 9, 9);
+        drawTexturedModalRect(left + m, top, 9, 0, 9, 9);//コイン
+        drawTexturedModalRect(left + 65, top, 0, 18, 9, 9);//M
+        drawTexturedModalRect(left + 74, top, 9, 18, 9, 9);//P
 
         left += 56;
 
-        for (int i = 1; i <= String.valueOf(money).length() && i <= 7; i += 1) {
+        for (int i = 1; i <= String.valueOf(money).length() && i <= 10; i += 1) {
             String s = String.valueOf(money).substring(String.valueOf(money).length() - i, String.valueOf(money).length() - i + 1);
             drawTexturedModalRect(left, top, 9 * Integer.parseInt(s), 9, 9, 9);
             left -= 8;
         }
 
         //お金持ちの処理
-        if (money >= 10000000) {
-
-            left = width / 2 + 9;
-            top = height - GuiIngameForge.right_height;//left_height-10+air;
-            GuiIngameForge.right_height += 10;
-
-            drawTexturedModalRect(left, top, 18, 18, 9, 9);
-            //drawTexturedModalRect(left + 65, top, 0, 18, 9, 9);
-            //drawTexturedModalRect(left + 74, top, 9, 18, 9, 9);
-
-            left += 56;
-
-            for (int i = 8; i <= String.valueOf(money).length(); i += 1) {
-                String s = String.valueOf(money).substring(String.valueOf(money).length() - i, String.valueOf(money).length() - i + 1);
-                drawTexturedModalRect(left, top, 9 * Integer.parseInt(s), 9, 9, 9);
-                left -= 8;
-            }
-
-        }
+        //        if (money >= 10000000) {
+        //
+        //            left = width / 2 + 9;
+        //            top = height - GuiIngameForge.right_height;//left_height-10+air;
+        //            GuiIngameForge.right_height += 10;
+        //
+        //            drawTexturedModalRect(left, top, 18, 18, 9, 9);
+        //            //drawTexturedModalRect(left + 65, top, 0, 18, 9, 9);
+        //            //drawTexturedModalRect(left + 74, top, 9, 18, 9, 9);
+        //
+        //            left += 56;
+        //
+        //            for (int i = 8; i <= String.valueOf(money).length(); i += 1) {
+        //                String s = String.valueOf(money).substring(String.valueOf(money).length() - i, String.valueOf(money).length() - i + 1);
+        //                drawTexturedModalRect(left, top, 9 * Integer.parseInt(s), 9, 9, 9);
+        //                left -= 8;
+        //            }
+        //
+        //        }
 
         mc.mcProfiler.endSection();
         bind(Gui.icons);
