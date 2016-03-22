@@ -239,13 +239,17 @@ public class MCEconomyAPI {
 
         //MCEconomyAPI.ShopManager = new ShopManager();
 
+        //粘土 30
         //レンガ 1個 50
         //石レンガ 10
         //本 150
         //石炭 100
-        //レッドストーン 50
+        //レッドストーン 40
+        //エンダーアイ 40
+        //水晶 300
+        //小麦 50
 
-        //建築
+        //建築 Block
         addPurchaseItem(new ItemStack(Blocks.stone), 1);
         addPurchaseItem(new ItemStack(Blocks.grass), 10);
         addPurchaseItem(new ItemStack(Blocks.dirt), 5);
@@ -284,17 +288,18 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 1), 8);//砂岩
         addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 3), 0);//石
         addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 4), 200);//レンガ
-        addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 5), 50);//石レンガ
+        addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 5), 12);//石レンガ
         addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 6), 50);//ネザーレンガ
-        addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 7), 2000);//水晶
+        addPurchaseItem(new ItemStack(Blocks.double_stone_slab, 1, 7), 1200);//水晶
         //ハーフ
         addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 0), 1);//焼石
         addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 1), 4);//砂岩
         addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 3), 0);//石
         addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 4), 100);//レンガ
-        addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 5), 25);//石レンガ
+        addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 5), 5);//石レンガ
         addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 6), 25);//ネザーレンガ
-        addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 7), 1000);//水晶
+        addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, 7), 600);//水晶
+        //
         addPurchaseItem(new ItemStack(Blocks.brick_block), 200);
         addPurchaseItem(new ItemStack(Blocks.bookshelf), 510);
         addPurchaseItem(new ItemStack(Blocks.mossy_cobblestone), 10);
@@ -305,11 +310,65 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.wheat), -1);
         addPurchaseItem(new ItemStack(Blocks.farmland), -1);
         addPurchaseItem(new ItemStack(Blocks.stone_stairs), 1);
-        addPurchaseItem(new ItemStack(Blocks.stone), 0);
-        addPurchaseItem(new ItemStack(Blocks.stone), 0);
-        addPurchaseItem(new ItemStack(Blocks.stone), 0);
+        addPurchaseItem(new ItemStack(Blocks.redstone_ore), 50);
+        addPurchaseItem(new ItemStack(Blocks.lit_redstone_ore), -1);//光っているレッドストーン
+        addPurchaseItem(new ItemStack(Blocks.ice), 65);
+        addPurchaseItem(new ItemStack(Blocks.snow), 1);
+        addPurchaseItem(new ItemStack(Blocks.clay), 120);
+        addPurchaseItem(new ItemStack(Blocks.pumpkin), 90);
+        addPurchaseItem(new ItemStack(Blocks.netherrack), 0);
+        addPurchaseItem(new ItemStack(Blocks.soul_sand), 2);
+        addPurchaseItem(new ItemStack(Blocks.glowstone), 1300);
+        addPurchaseItem(new ItemStack(Blocks.portal), -1);//ポータル
+        addPurchaseItem(new ItemStack(Blocks.lit_pumpkin), 120);
+        addPurchaseItem(new ItemStack(Blocks.stonebrick), 10);
+        addPurchaseItem(new ItemStack(Blocks.stonebrick, 1, 1), 8);
+        addPurchaseItem(new ItemStack(Blocks.stonebrick, 1, 2), 5);
+        addPurchaseItem(new ItemStack(Blocks.stonebrick, 1, 3), 14);
+        addPurchaseItem(new ItemStack(Blocks.melon_block), 95);
+        addPurchaseItem(new ItemStack(Blocks.pumpkin_stem), -1);//根
+        addPurchaseItem(new ItemStack(Blocks.melon_stem), -1);
+        addPurchaseItem(new ItemStack(Blocks.brick_stairs), 210);
+        addPurchaseItem(new ItemStack(Blocks.stone_brick_stairs), 12);
+        addPurchaseItem(new ItemStack(Blocks.mycelium), 1);
+        addPurchaseItem(new ItemStack(Blocks.nether_brick), 10);
+        addPurchaseItem(new ItemStack(Blocks.nether_brick_stairs), 12);
+        addPurchaseItem(new ItemStack(Blocks.nether_wart), -1);//ブロック状態のネザーウォート
+        addPurchaseItem(new ItemStack(Blocks.end_stone), 10);
+        addPurchaseItem(new ItemStack(Blocks.dragon_egg), -1);
+        for (int i = 0; i < 6; i++) {
+            addPurchaseItem(new ItemStack(Blocks.double_wooden_slab, 1, i), 4);
+        }
+        for (int i = 0; i < 6; i++) {
+            addPurchaseItem(new ItemStack(Blocks.wooden_slab, 1, i), 2);
+        }
+        addPurchaseItem(new ItemStack(Blocks.sandstone_stairs), 20);
+        addPurchaseItem(new ItemStack(Blocks.emerald_ore), 1500);
+        addPurchaseItem(new ItemStack(Blocks.emerald_block), 2700);
+        addPurchaseItem(new ItemStack(Blocks.spruce_stairs), 10);//まつの階段
+        addPurchaseItem(new ItemStack(Blocks.birch_stairs), 10);
+        addPurchaseItem(new ItemStack(Blocks.jungle_stairs), 10);
+        for (int i = 0; i < 2; i++) {
+            addPurchaseItem(new ItemStack(Blocks.cobblestone_wall, 1, i), 2);
+        }
+        addPurchaseItem(new ItemStack(Blocks.quartz_ore), 280);
+        addPurchaseItem(new ItemStack(Blocks.quartz_block), 1200);
+        addPurchaseItem(new ItemStack(Blocks.quartz_stairs), 1400);
+        for (int i = 0; i < 16; i++) {
+            addPurchaseItem(new ItemStack(Blocks.stained_hardened_clay, 1, i), 130);
+        }
+        addPurchaseItem(new ItemStack(Blocks.hay_block), 450);
+        addPurchaseItem(new ItemStack(Blocks.hardened_clay), 130);
+        addPurchaseItem(new ItemStack(Blocks.coal_block), 900);
+        addPurchaseItem(new ItemStack(Blocks.packed_ice), 100);
+        addPurchaseItem(new ItemStack(Blocks.acacia_stairs), 10);//階段
+        addPurchaseItem(new ItemStack(Blocks.dark_oak_stairs), 10);
+        for (int i = 0; i < 16; i++) {
+            addPurchaseItem(new ItemStack(Blocks.stained_glass, 1, i), 35);
+        }
+        //建築 Item
 
-        //装飾
+        //装飾 Block
         for (int i = 0; i < 6; i++) {
             addPurchaseItem(new ItemStack(Blocks.sapling, 1, i), 2);
         }
@@ -340,11 +399,44 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.standing_sign), -1);//看板
         addPurchaseItem(new ItemStack(Blocks.ladder), 5);
         addPurchaseItem(new ItemStack(Blocks.wall_sign), -1);//壁看板
-        addPurchaseItem(new ItemStack(Blocks.deadbush), 0);
-        addPurchaseItem(new ItemStack(Blocks.deadbush), 0);
-        addPurchaseItem(new ItemStack(Blocks.deadbush), 0);
-        addPurchaseItem(new ItemStack(Blocks.deadbush), 0);
-        addPurchaseItem(new ItemStack(Blocks.deadbush), 0);
+        addPurchaseItem(new ItemStack(Blocks.snow_layer), -1);//浅い雪
+        addPurchaseItem(new ItemStack(Blocks.cactus), 60);
+        addPurchaseItem(new ItemStack(Blocks.reeds), -1);//ブロックのサトウキビ
+        addPurchaseItem(new ItemStack(Blocks.jukebox), 10250);
+        addPurchaseItem(new ItemStack(Blocks.fence), 8);
+        for (int i = 0; i < 6; i++) {
+            addPurchaseItem(new ItemStack(Blocks.monster_egg, 1, i), -1);//シルバーFish
+        }
+        addPurchaseItem(new ItemStack(Blocks.brown_mushroom_block), -1);
+        addPurchaseItem(new ItemStack(Blocks.red_mushroom_block), -1);
+        addPurchaseItem(new ItemStack(Blocks.iron_bars), 190);
+        addPurchaseItem(new ItemStack(Blocks.glass_pane), 12);
+        addPurchaseItem(new ItemStack(Blocks.vine), 1);
+        addPurchaseItem(new ItemStack(Blocks.waterlily), 1);
+        addPurchaseItem(new ItemStack(Blocks.nether_brick_fence), 12);
+        addPurchaseItem(new ItemStack(Blocks.enchanting_table), 22000);
+        addPurchaseItem(new ItemStack(Blocks.end_portal), -1);
+        addPurchaseItem(new ItemStack(Blocks.end_portal_frame), -1);
+        addPurchaseItem(new ItemStack(Blocks.ender_chest), 150);
+        addPurchaseItem(new ItemStack(Blocks.flower_pot), -1);//植木鉢
+        addPurchaseItem(new ItemStack(Blocks.skull), -1);//頭
+        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 0), 16000);
+        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 1), -1);//壊れた
+        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 2), -1);
+        addPurchaseItem(new ItemStack(Blocks.trapped_chest), 520);
+        for (int i = 0; i < 16; i++) {
+            addPurchaseItem(new ItemStack(Blocks.carpet, 1, i), 60);
+        }
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 0), 20);
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 1), 20);
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 2), 1);
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 3), 1);
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 4), 20);
+        addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 5), 20);
+        for (int i = 0; i < 16; i++) {
+            addPurchaseItem(new ItemStack(Blocks.stained_glass_pane), 0);
+        }
+        //装飾 Item
 
         //レッドストーン
         addPurchaseItem(new ItemStack(Blocks.dispenser), 200);
@@ -355,25 +447,51 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.piston_extension), -1);
         addPurchaseItem(new ItemStack(Blocks.tnt), 80);
         addPurchaseItem(new ItemStack(Blocks.redstone_wire), -1);
-        addPurchaseItem(new ItemStack(Blocks.wooden_door), -1);//扉
+        addPurchaseItem(new ItemStack(Blocks.wooden_door), -1);//木のドア
         addPurchaseItem(new ItemStack(Blocks.lever), 55);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
+        addPurchaseItem(new ItemStack(Blocks.stone_pressure_plate), 5);
+        addPurchaseItem(new ItemStack(Blocks.iron_door), -1);//鉄のドア
+        addPurchaseItem(new ItemStack(Blocks.wooden_pressure_plate), 10);
+        addPurchaseItem(new ItemStack(Blocks.unlit_redstone_torch), -1);//消えているレッドストーンTouch
+        addPurchaseItem(new ItemStack(Blocks.redstone_torch), 45);
+        addPurchaseItem(new ItemStack(Blocks.stone_button), 1);
+        addPurchaseItem(new ItemStack(Blocks.unpowered_repeater), -1);
+        addPurchaseItem(new ItemStack(Blocks.powered_repeater), -1);
+        addPurchaseItem(new ItemStack(Blocks.trapdoor), 15);
+        addPurchaseItem(new ItemStack(Blocks.fence_gate), 10);
+        addPurchaseItem(new ItemStack(Blocks.redstone_lamp), 1500);
+        addPurchaseItem(new ItemStack(Blocks.lit_redstone_lamp), -1);
+        addPurchaseItem(new ItemStack(Blocks.tripwire_hook), 250);
+        addPurchaseItem(new ItemStack(Blocks.tripwire), -1);//糸
+        addPurchaseItem(new ItemStack(Blocks.command_block), -1);//コマンドブロック
+        addPurchaseItem(new ItemStack(Blocks.wooden_button), 5);
+        addPurchaseItem(new ItemStack(Blocks.light_weighted_pressure_plate), 8000);
+        addPurchaseItem(new ItemStack(Blocks.heavy_weighted_pressure_plate), 1000);
+        addPurchaseItem(new ItemStack(Blocks.unpowered_comparator), -1);
+        addPurchaseItem(new ItemStack(Blocks.powered_comparator), -1);
+        addPurchaseItem(new ItemStack(Blocks.daylight_detector), 1000);
+        addPurchaseItem(new ItemStack(Blocks.redstone_block), 360);
+        addPurchaseItem(new ItemStack(Blocks.hopper), 2600);
+        addPurchaseItem(new ItemStack(Blocks.dropper), 50);
 
         //移動
         addPurchaseItem(new ItemStack(Blocks.golden_rail), 4100);
         addPurchaseItem(new ItemStack(Blocks.detector_rail), 600);
         addPurchaseItem(new ItemStack(Blocks.rail), 250);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
-        addPurchaseItem(new ItemStack(Blocks.dispenser), 100);
+        addPurchaseItem(new ItemStack(Blocks.activator_rail), 600);
+
+        //その他
+        addPurchaseItem(new ItemStack(Blocks.beacon), 9000);
+
+        //食べ物
+        addPurchaseItem(new ItemStack(Blocks.cake), -1);//ブロックのケーキ
+        addPurchaseItem(new ItemStack(Blocks.cocoa), -1);//ブロック状態のカカオ
+        addPurchaseItem(new ItemStack(Blocks.carrots), -1);//にんじん
+        addPurchaseItem(new ItemStack(Blocks.potatoes), -1);//じゃがいも
+
+        //ポーション
+        addPurchaseItem(new ItemStack(Blocks.brewing_stand), -1);//ブロック状態のスタンド
+        addPurchaseItem(new ItemStack(Blocks.cauldron), -1);//ブロック状態の釜
 
         //レバーで終了
 
