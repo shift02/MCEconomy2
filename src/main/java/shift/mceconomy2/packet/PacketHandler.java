@@ -20,6 +20,8 @@ public class PacketHandler {
 		INSTANCE.registerMessage(MessagePlayerProperties.class,MessagePlayerProperties.class, 0, Side.CLIENT);
 		INSTANCE.registerMessage(ShopButtonHandler.class,PacketShopButton.class, 1, Side.SERVER);
 		INSTANCE.registerMessage(MessageGuiId.class,PacketGuiId.class, 2, Side.SERVER);
+		INSTANCE.registerMessage(MessageOpenShop.class, PacketOpenShop.class, 3, Side.SERVER);
+		INSTANCE.registerMessage(MessageOpenShop.class, PacketOpenShop.class, 4, Side.CLIENT);
 
 	}
 

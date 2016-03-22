@@ -8,12 +8,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import shift.mceconomy2.api.MCEconomyAPI;
+import shift.mceconomy2.api.shop.ShopAPI;
 import shift.mceconomy2.event.CommonEventManager;
 import shift.mceconomy2.event.MPManager;
 import shift.mceconomy2.gui.HUDMP;
 import shift.mceconomy2.item.MCEItems;
 import shift.mceconomy2.packet.PacketHandler;
 import shift.mceconomy2.proxy.CommonProxy;
+import shift.mceconomy2.shop.ShopAPIHandler;
 
 @Mod(modid = MCEconomy2.MODID, version = MCEconomy2.VERSION, dependencies = MCEconomy2.DEPENDENCY)
 public class MCEconomy2 {
@@ -45,6 +47,8 @@ public class MCEconomy2 {
         MCEconomyAPI.SoundManager = new MCESoundManager();
         MCEconomyAPI.ShopManager = new ShopManager();
         MCEconomyAPI.registerPurchaseItem();
+
+        ShopAPI.apiHandler = new ShopAPIHandler();
 
     }
 
