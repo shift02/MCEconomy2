@@ -150,6 +150,7 @@ public class MCEconomyAPI {
      * @see IShop
      * @return ShopID
      */
+    @Deprecated
     public static int registerShop(IShop shop) {
         return ShopManager.registerShop(shop);
     }
@@ -159,6 +160,7 @@ public class MCEconomyAPI {
      * @param id ShopID
      * @return IShop
      */
+    @Deprecated
     public static IShop getShop(int id) {
         return ShopManager.getShop(id);
     }
@@ -172,6 +174,7 @@ public class MCEconomyAPI {
      * @param y y軸
      * @param z z軸
      */
+    @Deprecated
     public static void openShopGui(int id, EntityPlayer player, World world, int x, int y, int z) {
         ShopManager.openShopGui(id, player, world, x, y, z);
     }

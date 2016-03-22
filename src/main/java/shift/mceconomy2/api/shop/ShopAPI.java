@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * MOD別にショップを管理します。<br>
- * MODIDごとにショップリストが作成されます。
+ * MODIDごとにショップリストが生成されます。
  * @author kegare
  */
 public final class ShopAPI {

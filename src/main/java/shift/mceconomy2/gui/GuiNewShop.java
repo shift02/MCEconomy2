@@ -30,7 +30,7 @@ public class GuiNewShop extends GuiContainer {
 
     private int currentIndex;
 
-    public GuiNewShop(EntityPlayer player, IShop shop, int id, World world) {
+    public GuiNewShop(EntityPlayer player, IShop shop, World world) {
         super(new ContainerShop(player, shop, world));
         this.shop = shop;
     }

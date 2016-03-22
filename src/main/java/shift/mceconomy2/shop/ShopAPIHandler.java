@@ -11,6 +11,8 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.common.MinecraftForge;
+import shift.mceconomy2.api.event.ShopEvent;
 import shift.mceconomy2.api.shop.IShop;
 import shift.mceconomy2.api.shop.IShopAPI;
 import shift.mceconomy2.gui.ContainerShop;
@@ -23,6 +25,13 @@ public class ShopAPIHandler implements IShopAPI {
 
     @Override
     public int registerShop(String modid, IShop shop) {
+
+        ShopEvent.Register event = new ShopEvent.Register(modid, shop);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+
+            return -1;
+        }
 
         List<IShop> shops = SHOP_MAP.get(modid);
 
@@ -91,6 +100,13 @@ public class ShopAPIHandler implements IShopAPI {
 
     @Override
     public void openShop(EntityPlayer player, String modid, int id) {
+
+        ShopEvent.OpenShop event = new ShopEvent.OpenShop(player, modid, id, getShop(modid, id));
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+
+            return;
+        }
 
         if (player.worldObj.isRemote) {
 

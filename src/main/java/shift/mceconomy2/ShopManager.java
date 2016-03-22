@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,15 +17,12 @@ import shift.mceconomy2.api.event.PriceEvent;
 import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.IShop;
 import shift.mceconomy2.api.shop.IShopManager;
+import shift.mceconomy2.api.shop.ShopAPI;
 import shift.mceconomy2.api.shop.ShopAdapter;
-import shift.mceconomy2.packet.PacketGuiId;
-import shift.mceconomy2.packet.PacketHandler;
 
 public class ShopManager implements IShopManager {
 
     //private final ArrayList<IProductList> ProductList = new ArrayList<IProductList>();
-
-    private final ArrayList<IShop> shopList = new ArrayList<IShop>();
 
     private static final HashMap<ItemStack, Integer> purchaseList = new HashMap<ItemStack, Integer>();
 
@@ -31,14 +30,8 @@ public class ShopManager implements IShopManager {
 
     private static final HashMap<Class<? extends Entity>, Integer> purchaseEntityList = new HashMap<Class<? extends Entity>, Integer>();
 
-    public ShopManager() {
+    //ショップ関係
 
-        shopList.add(null);
-        shopList.add(null);
-
-    }
-
-    //shop関係
     @Override
     public int registerProductList(IProductList list) {
 
@@ -68,51 +61,27 @@ public class ShopManager implements IShopManager {
     }
 
     @Override
-    public int registerShop(IShop list) {
+    public int registerShop(IShop shop) {
 
-        shopList.add(list);
-
-        return shopList.indexOf(list);
-
+        return ShopAPI.registerShop("deprecated", shop);
     }
 
     @Override
     public IShop getShop(int id) {
 
-        if (shopList.size() < id) {
-            return null;
-        }
-        return shopList.get(id);
+        return ShopAPI.getShop("deprecated", id);
     }
 
     @Override
     public ArrayList<IShop> getShops() {
-        return shopList;
-    }
 
-    //ショップ関係
+        return Lists.newArrayList(ShopAPI.getShops("deprecated"));
+    }
 
     @Override
     public void openShopGui(int id, EntityPlayer player, World world, int x, int y, int z) {
 
-        /*OpenShopGuiEvent event = new OpenShopGuiEvent(player, id, world, x, y, z);
-        
-        if (MinecraftForge.EVENT_BUS.post(event))
-        {
-            return;
-        }
-        
-        if (event.getResult() == Result.ALLOW)
-        {
-            return ;
-        }*/
-
-        if (world.isRemote) {
-            PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
-        } else {
-            player.openGui(MCEconomy2.instance, id, world, x, y, z);
-        }
-
+        ShopAPI.openShop(player, "deprecated", id);
     }
 
     @Override
@@ -156,7 +125,7 @@ public class ShopManager implements IShopManager {
 
     @Override
     public boolean hasPurchase(ItemStack item) {
-        return (this.getPurchase(item) != -1 && this.getPurchase(item) != -2);
+        return this.getPurchase(item) != -1 && this.getPurchase(item) != -2;
     }
 
     @Override
@@ -180,7 +149,7 @@ public class ShopManager implements IShopManager {
 
     @Override
     public boolean hasFluidPurchase(Fluid fluid) {
-        return (this.getFluidPurchase(fluid) != -1 && this.getFluidPurchase(fluid) != -2);
+        return this.getFluidPurchase(fluid) != -1 && this.getFluidPurchase(fluid) != -2;
     }
 
     @Override
@@ -206,7 +175,7 @@ public class ShopManager implements IShopManager {
 
     @Override
     public boolean hasEntityPurchase(Entity entity) {
-        return (this.getEntityPurchase(entity) != -1 && this.getEntityPurchase(entity) != -2);
+        return this.getEntityPurchase(entity) != -1 && this.getEntityPurchase(entity) != -2;
     }
 
 }

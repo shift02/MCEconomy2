@@ -40,7 +40,7 @@ public class MessageOpenShop implements IMessageHandler<PacketOpenShop, IMessage
 
             EntityPlayer player = MCEconomy2.proxy.getClientPlayer();
 
-            FMLCommonHandler.instance().showGuiScreen(new GuiNewShop(player, shop, message.getShopID(), player.worldObj));
+            FMLCommonHandler.instance().showGuiScreen(new GuiNewShop(player, shop, player.worldObj));
         }
 
         return null;
