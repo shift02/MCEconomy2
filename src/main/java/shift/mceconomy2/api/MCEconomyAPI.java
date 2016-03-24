@@ -232,22 +232,11 @@ public class MCEconomyAPI {
 
     /**
      * registerPurchaseItem API読み込み時にバニラアイテムの価格が自動で設定される。
-     * 時間がかかりそうなので手をつけてない。
-     * 少し手をつけた
+     * MODアイテムにMPを設定する時の参考にしてください。
      */
     public static void registerPurchaseItem() {
 
         //MCEconomyAPI.ShopManager = new ShopManager();
-
-        //粘土 30
-        //レンガ 1個 50
-        //石レンガ 10
-        //本 150
-        //石炭 100
-        //レッドストーン 40
-        //エンダーアイ 40
-        //水晶 300
-        //小麦 50
 
         //建築 Block
         addPurchaseItem(new ItemStack(Blocks.stone), 1);
@@ -318,7 +307,7 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.pumpkin), 90);
         addPurchaseItem(new ItemStack(Blocks.netherrack), 0);
         addPurchaseItem(new ItemStack(Blocks.soul_sand), 2);
-        addPurchaseItem(new ItemStack(Blocks.glowstone), 1300);
+        addPurchaseItem(new ItemStack(Blocks.glowstone), 400);
         addPurchaseItem(new ItemStack(Blocks.portal), -1);//ポータル
         addPurchaseItem(new ItemStack(Blocks.lit_pumpkin), 120);
         addPurchaseItem(new ItemStack(Blocks.stonebrick), 10);
@@ -352,14 +341,16 @@ public class MCEconomyAPI {
             addPurchaseItem(new ItemStack(Blocks.cobblestone_wall, 1, i), 2);
         }
         addPurchaseItem(new ItemStack(Blocks.quartz_ore), 280);
-        addPurchaseItem(new ItemStack(Blocks.quartz_block), 1200);
+        addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 0), 1200);
+        addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 1), 1280);
+        addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 2), 1280);
         addPurchaseItem(new ItemStack(Blocks.quartz_stairs), 1400);
         for (int i = 0; i < 16; i++) {
             addPurchaseItem(new ItemStack(Blocks.stained_hardened_clay, 1, i), 130);
         }
         addPurchaseItem(new ItemStack(Blocks.hay_block), 450);
         addPurchaseItem(new ItemStack(Blocks.hardened_clay), 130);
-        addPurchaseItem(new ItemStack(Blocks.coal_block), 900);
+        addPurchaseItem(new ItemStack(Blocks.coal_block), 450);
         addPurchaseItem(new ItemStack(Blocks.packed_ice), 100);
         addPurchaseItem(new ItemStack(Blocks.acacia_stairs), 10);//階段
         addPurchaseItem(new ItemStack(Blocks.dark_oak_stairs), 10);
@@ -389,7 +380,7 @@ public class MCEconomyAPI {
         }
         addPurchaseItem(new ItemStack(Blocks.brown_mushroom), 15);
         addPurchaseItem(new ItemStack(Blocks.red_mushroom), 15);
-        addPurchaseItem(new ItemStack(Blocks.torch), 30);
+        addPurchaseItem(new ItemStack(Blocks.torch), 10);
         addPurchaseItem(new ItemStack(Blocks.fire), -1);
         addPurchaseItem(new ItemStack(Blocks.mob_spawner), -1);
         addPurchaseItem(new ItemStack(Blocks.chest), 50);
@@ -421,8 +412,8 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.flower_pot), -1);//植木鉢
         addPurchaseItem(new ItemStack(Blocks.skull), -1);//頭
         addPurchaseItem(new ItemStack(Blocks.anvil, 1, 0), 16000);
-        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 1), -1);//壊れた
-        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 2), -1);
+        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 1), -1);//少し壊れた金床
+        addPurchaseItem(new ItemStack(Blocks.anvil, 1, 2), -1);//壊れた金床
         addPurchaseItem(new ItemStack(Blocks.trapped_chest), 520);
         for (int i = 0; i < 16; i++) {
             addPurchaseItem(new ItemStack(Blocks.carpet, 1, i), 60);
@@ -434,11 +425,17 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 4), 20);
         addPurchaseItem(new ItemStack(Blocks.double_plant, 1, 5), 20);
         for (int i = 0; i < 16; i++) {
-            addPurchaseItem(new ItemStack(Blocks.stained_glass_pane), 0);
+            addPurchaseItem(new ItemStack(Blocks.stained_glass_pane, 1, i), 18);
         }
         //装飾 Item
+        addPurchaseItem(new ItemStack(Items.painting), 20);
+        addPurchaseItem(new ItemStack(Items.sign), 24);
+        addPurchaseItem(new ItemStack(Items.bed), 200);
+        addPurchaseItem(new ItemStack(Items.item_frame), 60);
+        addPurchaseItem(new ItemStack(Items.flower_pot), 150);
+        addPurchaseItem(new ItemStack(Items.skull), 50);
 
-        //レッドストーン
+        //レッドストーン Block
         addPurchaseItem(new ItemStack(Blocks.dispenser), 200);
         addPurchaseItem(new ItemStack(Blocks.noteblock), 120);
         addPurchaseItem(new ItemStack(Blocks.sticky_piston), 800);
@@ -473,416 +470,224 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Blocks.redstone_block), 360);
         addPurchaseItem(new ItemStack(Blocks.hopper), 2600);
         addPurchaseItem(new ItemStack(Blocks.dropper), 50);
+        //レッドストーン Item
+        addPurchaseItem(new ItemStack(Items.wooden_door), 28);
+        addPurchaseItem(new ItemStack(Items.iron_door), 2800);
+        addPurchaseItem(new ItemStack(Items.redstone), 40);
+        addPurchaseItem(new ItemStack(Items.repeater), 150);
+        addPurchaseItem(new ItemStack(Items.comparator), 210);
 
-        //移動
+        //移動 Block
         addPurchaseItem(new ItemStack(Blocks.golden_rail), 4100);
         addPurchaseItem(new ItemStack(Blocks.detector_rail), 600);
         addPurchaseItem(new ItemStack(Blocks.rail), 250);
         addPurchaseItem(new ItemStack(Blocks.activator_rail), 600);
+        //移動 Item
+        addPurchaseItem(new ItemStack(Items.minecart), 800);
+        addPurchaseItem(new ItemStack(Items.saddle), 40);
+        addPurchaseItem(new ItemStack(Items.boat), 30);
+        addPurchaseItem(new ItemStack(Items.chest_minecart), 830);
+        addPurchaseItem(new ItemStack(Items.furnace_minecart), 820);
+        addPurchaseItem(new ItemStack(Items.carrot_on_a_stick), 26);
+        addPurchaseItem(new ItemStack(Items.tnt_minecart), 800);
+        addPurchaseItem(new ItemStack(Items.hopper_minecart), 980);
+        addPurchaseItem(new ItemStack(Items.command_block_minecart), -1);
 
-        //その他
+        //その他 Block
         addPurchaseItem(new ItemStack(Blocks.beacon), 9000);
+        //その他 Item
+        addPurchaseItem(new ItemStack(Items.bucket), 150);
+        addPurchaseItem(new ItemStack(Items.water_bucket), 150);
+        addPurchaseItem(new ItemStack(Items.lava_bucket), 200);
+        addPurchaseItem(new ItemStack(Items.snowball), 0);
+        addPurchaseItem(new ItemStack(Items.milk_bucket), 600);
+        addPurchaseItem(new ItemStack(Items.paper), 10);
+        addPurchaseItem(new ItemStack(Items.book), 150);
+        addPurchaseItem(new ItemStack(Items.slime_ball), 1);
+        addPurchaseItem(new ItemStack(Items.bone), 1);
+        addPurchaseItem(new ItemStack(Items.filled_map), 1);
+        addPurchaseItem(new ItemStack(Items.ender_pearl), 20);
+        addPurchaseItem(new ItemStack(Items.ender_eye), 20);
+        addPurchaseItem(new ItemStack(Items.spawn_egg, 1, OreDictionary.WILDCARD_VALUE), -1);
+        addPurchaseItem(new ItemStack(Items.experience_bottle), 150);
+        addPurchaseItem(new ItemStack(Items.fire_charge), 50);
+        addPurchaseItem(new ItemStack(Items.writable_book), 180);
+        addPurchaseItem(new ItemStack(Items.written_book), -1);
+        addPurchaseItem(new ItemStack(Items.map), 10);
+        addPurchaseItem(new ItemStack(Items.fireworks, 1, OreDictionary.WILDCARD_VALUE), 10);
+        addPurchaseItem(new ItemStack(Items.firework_charge, 1, OreDictionary.WILDCARD_VALUE), 10);
+        addPurchaseItem(new ItemStack(Items.iron_horse_armor), 1000);
+        addPurchaseItem(new ItemStack(Items.golden_horse_armor), 10000);
+        addPurchaseItem(new ItemStack(Items.diamond_horse_armor), 20000);
+        addPurchaseItem(new ItemStack(Items.record_13), 500);
+        addPurchaseItem(new ItemStack(Items.record_cat), 500);
+        addPurchaseItem(new ItemStack(Items.record_blocks), 500);
+        addPurchaseItem(new ItemStack(Items.record_chirp), 500);
+        addPurchaseItem(new ItemStack(Items.record_far), 500);
+        addPurchaseItem(new ItemStack(Items.record_mall), 500);
+        addPurchaseItem(new ItemStack(Items.record_mellohi), 500);
+        addPurchaseItem(new ItemStack(Items.record_stal), 500);
+        addPurchaseItem(new ItemStack(Items.record_strad), 500);
+        addPurchaseItem(new ItemStack(Items.record_ward), 500);
+        addPurchaseItem(new ItemStack(Items.record_11), -1);
+        addPurchaseItem(new ItemStack(Items.record_wait), 500);
 
-        //食べ物
+        //食べ物 Block
         addPurchaseItem(new ItemStack(Blocks.cake), -1);//ブロックのケーキ
         addPurchaseItem(new ItemStack(Blocks.cocoa), -1);//ブロック状態のカカオ
         addPurchaseItem(new ItemStack(Blocks.carrots), -1);//にんじん
         addPurchaseItem(new ItemStack(Blocks.potatoes), -1);//じゃがいも
 
-        //ポーション
+        //食べ物 Item
+        addPurchaseItem(new ItemStack(Items.apple), 20);
+        addPurchaseItem(new ItemStack(Items.mushroom_stew), 50);
+        addPurchaseItem(new ItemStack(Items.porkchop), 20);
+        addPurchaseItem(new ItemStack(Items.cooked_porkchop), 28);
+        addPurchaseItem(new ItemStack(Items.golden_apple, 1, 0), 4000);
+        addPurchaseItem(new ItemStack(Items.golden_apple, 1, 1), 36000);
+        addPurchaseItem(new ItemStack(Items.fish, 1, 0), 62);
+        addPurchaseItem(new ItemStack(Items.fish, 1, 1), 272);//さけ
+        addPurchaseItem(new ItemStack(Items.fish, 1, 2), 160);//くまのみ
+        addPurchaseItem(new ItemStack(Items.fish, 1, 3), 104);//ふぐ
+        addPurchaseItem(new ItemStack(Items.cooked_fished, 1, 0), 70);
+        addPurchaseItem(new ItemStack(Items.cooked_fished, 1, 1), 296);
+        addPurchaseItem(new ItemStack(Items.cake), 640);
+        addPurchaseItem(new ItemStack(Items.cookie), 22);
+        addPurchaseItem(new ItemStack(Items.melon), 8);
+        addPurchaseItem(new ItemStack(Items.beef), 90);
+        addPurchaseItem(new ItemStack(Items.cooked_beef), 100);
+        addPurchaseItem(new ItemStack(Items.chicken), 40);
+        addPurchaseItem(new ItemStack(Items.cooked_chicken), 50);
+        addPurchaseItem(new ItemStack(Items.rotten_flesh), 0);
+        addPurchaseItem(new ItemStack(Items.spider_eye), 1);
+        addPurchaseItem(new ItemStack(Items.carrot), 53);
+        addPurchaseItem(new ItemStack(Items.potato), 42);
+        addPurchaseItem(new ItemStack(Items.baked_potato), 50);
+        addPurchaseItem(new ItemStack(Items.poisonous_potato), 0);
+        addPurchaseItem(new ItemStack(Items.golden_carrot), 650);
+        addPurchaseItem(new ItemStack(Items.pumpkin_pie), 128);
+
+        //道具 素材の金属の1/10
+        addPurchaseItem(new ItemStack(Items.iron_shovel), 50);
+        addPurchaseItem(new ItemStack(Items.iron_pickaxe), 150);
+        addPurchaseItem(new ItemStack(Items.iron_axe), 150);
+        addPurchaseItem(new ItemStack(Items.flint_and_steel), 50);
+        addPurchaseItem(new ItemStack(Items.wooden_shovel), 1);
+        addPurchaseItem(new ItemStack(Items.wooden_pickaxe), 1);
+        addPurchaseItem(new ItemStack(Items.wooden_axe), 1);
+        addPurchaseItem(new ItemStack(Items.stone_shovel), 2);
+        addPurchaseItem(new ItemStack(Items.stone_pickaxe), 2);
+        addPurchaseItem(new ItemStack(Items.stone_axe), 2);
+        addPurchaseItem(new ItemStack(Items.diamond_shovel), 1000);
+        addPurchaseItem(new ItemStack(Items.diamond_pickaxe), 3000);
+        addPurchaseItem(new ItemStack(Items.diamond_axe), 3000);
+        addPurchaseItem(new ItemStack(Items.golden_shovel), 400);
+        addPurchaseItem(new ItemStack(Items.golden_pickaxe), 1200);
+        addPurchaseItem(new ItemStack(Items.golden_axe), 1200);
+        addPurchaseItem(new ItemStack(Items.wooden_hoe), 1);
+        addPurchaseItem(new ItemStack(Items.stone_hoe), 2);
+        addPurchaseItem(new ItemStack(Items.iron_hoe), 100);
+        addPurchaseItem(new ItemStack(Items.diamond_hoe), 2000);
+        addPurchaseItem(new ItemStack(Items.golden_hoe), 800);
+        addPurchaseItem(new ItemStack(Items.compass), 2100);
+        addPurchaseItem(new ItemStack(Items.fishing_rod), 30);
+        addPurchaseItem(new ItemStack(Items.clock), 15000);
+        addPurchaseItem(new ItemStack(Items.shears), 500);
+        addPurchaseItem(new ItemStack(Items.lead), 30);
+        addPurchaseItem(new ItemStack(Items.name_tag), 60);
+
+        //戦闘
+        addPurchaseItem(new ItemStack(Items.bow), 20);
+        addPurchaseItem(new ItemStack(Items.arrow), 1);
+        addPurchaseItem(new ItemStack(Items.iron_sword), 100);
+        addPurchaseItem(new ItemStack(Items.wooden_sword), 1);
+        addPurchaseItem(new ItemStack(Items.stone_sword), 2);
+        addPurchaseItem(new ItemStack(Items.diamond_sword), 2000);
+        addPurchaseItem(new ItemStack(Items.golden_sword), 800);
+        addPurchaseItem(new ItemStack(Items.leather_helmet), 250);//革は素材の値段のまま
+        addPurchaseItem(new ItemStack(Items.leather_chestplate), 400);
+        addPurchaseItem(new ItemStack(Items.leather_leggings), 350);
+        addPurchaseItem(new ItemStack(Items.leather_boots), 200);
+        addPurchaseItem(new ItemStack(Items.chainmail_helmet), -1);//MODで入手できるようにする場合は価格を設定する
+        addPurchaseItem(new ItemStack(Items.chainmail_chestplate), -1);
+        addPurchaseItem(new ItemStack(Items.chainmail_leggings), -1);
+        addPurchaseItem(new ItemStack(Items.chainmail_boots), -1);
+        addPurchaseItem(new ItemStack(Items.iron_helmet), 250);
+        addPurchaseItem(new ItemStack(Items.iron_chestplate), 400);
+        addPurchaseItem(new ItemStack(Items.iron_leggings), 350);
+        addPurchaseItem(new ItemStack(Items.iron_boots), 200);
+        addPurchaseItem(new ItemStack(Items.diamond_helmet), 5000);
+        addPurchaseItem(new ItemStack(Items.diamond_chestplate), 8000);
+        addPurchaseItem(new ItemStack(Items.diamond_leggings), 7000);
+        addPurchaseItem(new ItemStack(Items.diamond_boots), 4000);
+        addPurchaseItem(new ItemStack(Items.golden_helmet), 2000);
+        addPurchaseItem(new ItemStack(Items.golden_chestplate), 6400);
+        addPurchaseItem(new ItemStack(Items.golden_leggings), 5600);
+        addPurchaseItem(new ItemStack(Items.golden_boots), 3200);
+        addPurchaseItem(new ItemStack(Items.enchanted_book), 30);
+
+        //ポーション Block
         addPurchaseItem(new ItemStack(Blocks.brewing_stand), -1);//ブロック状態のスタンド
         addPurchaseItem(new ItemStack(Blocks.cauldron), -1);//ブロック状態の釜
+        //ポーション Item
+        addPurchaseItem(new ItemStack(Items.ghast_tear), 5);
+        addPurchaseItem(new ItemStack(Items.potionitem), 1);//ポーションはまた今度
+        addPurchaseItem(new ItemStack(Items.glass_bottle), 10);
+        addPurchaseItem(new ItemStack(Items.fermented_spider_eye), 1);
+        addPurchaseItem(new ItemStack(Items.blaze_powder), 2);
+        addPurchaseItem(new ItemStack(Items.magma_cream), 5);
+        addPurchaseItem(new ItemStack(Items.brewing_stand), 50);
+        addPurchaseItem(new ItemStack(Items.cauldron), 50);
+        addPurchaseItem(new ItemStack(Items.brewing_stand), 3500);
+        addPurchaseItem(new ItemStack(Items.speckled_melon), 650);
 
-        //レバーで終了
-
-        //木こり使用時はただ
-        //        int k = 1;
-        //        if (Loader.isModLoaded("net.minecraft.scalar.cutall.mod_CutAllSMP")) {
-        //            k = 0;
-        //        }
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.stone), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.grass), 2);
-        //        addPurchaseItem(new ItemStack(Blocks.dirt), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.dirt, 1, 2), 4);
-        //        addPurchaseItem(new ItemStack(Blocks.cobblestone), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.planks, 1, 0), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.planks, 1, 1), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.planks, 1, 2), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.planks, 1, 3), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.sapling, 1, 32767), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.bedrock), 1000);
-        //        addPurchaseItem(new ItemStack(Blocks.flowing_water), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.water), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.flowing_lava), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.lava), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.sand, 1, OreDictionary.WILDCARD_VALUE), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.gravel), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.gold_ore), 100);
-        //        addPurchaseItem(new ItemStack(Blocks.iron_ore), 20);
-        //        addPurchaseItem(new ItemStack(Blocks.coal_ore), 10);
-        //        for (int i = 0; i < 6; i++) {
-        //            addPurchaseItem(new ItemStack(Blocks.planks, 1, i), 2 * k);
-        //        }
-        //        addPurchaseItem(new ItemStack(Blocks.wooden_pressure_plate, 1, 0), 2 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.log, 1, 0), 2 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.log, 1, 1), 2 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.log, 1, 2), 2 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.log, 1, 3), 2 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.log2, 1, 0), 3 * k);//アカシア、ダークオークはわずかに高値
-        //        addPurchaseItem(new ItemStack(Blocks.log2, 1, 1), 3 * k);
-        //        addPurchaseItem(new ItemStack(Blocks.leaves, 1, 32767), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.sponge), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.glass), 3);
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.lapis_ore), 80);
-        //        addPurchaseItem(new ItemStack(Blocks.lapis_block), 20);
-        //        addPurchaseItem(new ItemStack(Blocks.dispenser), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.sandstone, OreDictionary.WILDCARD_VALUE), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.noteblock), 50);
-        //        addPurchaseItem(new ItemStack(Blocks.bed), 10);
-        //        addPurchaseItem(new ItemStack(Blocks.golden_rail), 24);
-        //        addPurchaseItem(new ItemStack(Blocks.detector_rail), 12);
-        //        addPurchaseItem(new ItemStack(Blocks.sticky_piston), 10);
-        //        addPurchaseItem(new ItemStack(Blocks.web), 40);
-        //        addPurchaseItem(new ItemStack(Blocks.tallgrass), 2);
-        //        addPurchaseItem(new ItemStack(Blocks.deadbush, 1, 32767), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.piston), 6);
-        //        addPurchaseItem(new ItemStack(Blocks.piston_head), -1);
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.wool, 1, 32767), 20);
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.piston_extension), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.yellow_flower), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.red_flower, 1, 32767), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.brown_mushroom), 8);
-        //        addPurchaseItem(new ItemStack(Blocks.red_mushroom), 7);
-        //        addPurchaseItem(new ItemStack(Blocks.gold_block), 1800);
-        //        addPurchaseItem(new ItemStack(Blocks.iron_block), 450);
-        //        //疲れた(´・ω・｀)
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.double_stone_slab), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.stone_slab), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.brick_block), 16);
-        //        addPurchaseItem(new ItemStack(Blocks.tnt), 18);
-        //        addPurchaseItem(new ItemStack(Blocks.bookshelf), 12);
-        //        addPurchaseItem(new ItemStack(Blocks.mossy_cobblestone), 4);
-        //        addPurchaseItem(new ItemStack(Blocks.obsidian), 8);
-        //        addPurchaseItem(new ItemStack(Blocks.torch), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.fire), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.mob_spawner), 999);
-        //        addPurchaseItem(new ItemStack(Blocks.oak_stairs), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.birch_stairs), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.jungle_stairs), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.spruce_stairs), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.dark_oak_stairs), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.acacia_stairs), 3);
-        //
-        //        addPurchaseItem(new ItemStack(Blocks.chest), 6);
-        //        addPurchaseItem(new ItemStack(Blocks.redstone_wire), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.diamond_ore), 2000);
-        //        addPurchaseItem(new ItemStack(Blocks.diamond_block), 9000);
-        //        addPurchaseItem(new ItemStack(Blocks.crafting_table), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.wheat), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.carrots), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.potatoes), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.farmland), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.furnace), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.lit_furnace), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.wooden_door), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.ladder), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.rail), 10);
-        //        addPurchaseItem(new ItemStack(Blocks.stone_stairs), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.lever), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.stone_pressure_plate), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.iron_door), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.redstone_ore), 100);
-        //        addPurchaseItem(new ItemStack(Blocks.lit_redstone_ore), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.redstone_torch), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.stone_button), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.snow), 2);
-        //        addPurchaseItem(new ItemStack(Blocks.ice), 6);
-        //        addPurchaseItem(new ItemStack(Blocks.snow_layer), 0);
-        //        addPurchaseItem(new ItemStack(Blocks.cactus), 1);
-        //        addPurchaseItem(new ItemStack(Blocks.clay), 42);
-        //        addPurchaseItem(new ItemStack(Blocks.reeds), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.jukebox), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.fence), 2);
-        //        addPurchaseItem(new ItemStack(Blocks.pumpkin), 3);
-        //        addPurchaseItem(new ItemStack(Blocks.netherrack), -1);
-        //        addPurchaseItem(new ItemStack(Blocks.soul_sand), 7);
-        //        addPurchaseItem(new ItemStack(Blocks.glowstone), 21);
-
+        //材料
+        addPurchaseItem(new ItemStack(Items.coal, 1, 0), 50);
+        addPurchaseItem(new ItemStack(Items.coal, 1, 1), 10);//木炭
+        addPurchaseItem(new ItemStack(Items.diamond), 10000);
         addPurchaseItem(new ItemStack(Items.iron_ingot), 500);
         addPurchaseItem(new ItemStack(Items.gold_ingot), 4000);
-        addPurchaseItem(new ItemStack(Items.diamond), 10000);
-
-        /**Foods and crops: 基本的に無限資源はタダ、調理するとわずかに値打ちが出る*/
-        //金のりんご
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_apple, 1, 0), 180);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_apple, 1, 1), 1600);
-
-        //生食材
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.apple, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.beef, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.carrot, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chicken, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fish, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fish, 1, 1), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fish, 1, 2), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fish, 1, 3), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.melon, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.porkchop, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.potato, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.reeds, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wheat_seeds, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.melon_seeds, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.pumpkin_seeds, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wheat, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.sugar, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.poisonous_potato, 1, 0), 0);
-
-        //調理済み
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.baked_potato, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cooked_beef, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.mushroom_stew, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bread, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cake, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cooked_chicken, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cookie, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cooked_fished, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cooked_fished, 1, 1), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cooked_porkchop, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.pumpkin_pie, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_carrot, 1, 0), 180);
-
-        /**Materials: ものによる*/
-        //素材
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.emerald, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.flint, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.quartz, 1, 0), 35);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.gold_nugget, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.redstone, 1, 0), 12);
-
-        //misc
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.brick, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.clay_ball, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.coal, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.coal, 1, 1), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.egg, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.feather, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fermented_spider_eye, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.fire_charge, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.glowstone_dust, 1, 0), 25);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.leather, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.netherbrick, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.nether_wart, 1, 0), 7);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.paper, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.snowball, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.speckled_melon, 1, 0), 90);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stick, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.potionitem, 1, 32767), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.potionitem, 1, 0), 0);
-
-        for (int i = 0; i < 16; i++) {
-            if (i == 5) {
-                MCEconomyAPI.addPurchaseItem(new ItemStack(Items.dye, 1, 5), 3);
-            } else {
-                MCEconomyAPI.addPurchaseItem(new ItemStack(Items.dye, 1, i), 1);
-            }
-        }
-
-        //モブドロップ
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.blaze_powder, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.blaze_rod, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bone, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.rotten_flesh, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.ender_pearl, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.ender_eye, 1, 0), 40);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.ghast_tear, 1, 0), 120);//俗にいう金策モブ
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.gunpowder, 1, 0), 4);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.magma_cream, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.string, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.slime_ball, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.spider_eye, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.nether_star, 1, 0), 3000);//やすい。
-
-        /**Tools: 素材の額とだいたい等価か、少し安い*/
-        //ツール
-        //新品でないと売れない
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.arrow, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bow, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_axe, 1, 0), 1500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_axe, 1, 0), 300);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_axe, 1, 0), 150);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stone_axe, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_axe, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_hoe, 1, 0), 1000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_hoe, 1, 0), 200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_hoe, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stone_hoe, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_hoe, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_pickaxe, 1, 0), 1800);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_pickaxe, 1, 0), 350);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_pickaxe, 1, 0), 150);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stone_pickaxe, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_pickaxe, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_shovel, 1, 0), 500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_shovel, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_shovel, 1, 0), 50);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stone_shovel, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_shovel, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_sword, 1, 0), 1000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_sword, 1, 0), 200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_sword, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.stone_sword, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_sword, 1, 0), 5);
-
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.book, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bowl, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bucket, 1, 0), 150);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.lava_bucket, 1, 0), 200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.milk_bucket, 1, 0), 160);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.water_bucket, 1, 0), 150);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.carrot_on_a_stick, 1, 0), 8);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.compass, 1, 0), 200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.experience_bottle, 1, 0), 50);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.flint_and_steel, 1, 0), 55);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.flower_pot, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.glass_bottle, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.lead, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.map, 1, 0), 300);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.name_tag, 1, 0), 120);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.clock, 1, 0), 800);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.saddle, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.written_book, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.writable_book, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.shears, 1, 0), 100);
-
-        //のりもの
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.minecart, 1, 0), 450);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.boat, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.hopper_minecart, 1, 0), 800);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.furnace_minecart, 1, 0), 500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.tnt_minecart, 1, 0), 530);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chest_minecart, 1, 0), 500);
-
-        //設置物
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.bed, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.brewing_stand, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.cauldron, 1, 0), 350);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.comparator, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.repeater, 1, 0), 25);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_door, 1, 0), 250);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.wooden_door, 1, 0), 8);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.item_frame, 1, 0), 8);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.painting, 1, 0), 12);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.sign, 1, 0), 6);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE), 25);
-
-        //防具
-        //金とダイアは価値が半減する
-        //ダメージ値ゼロ指定なので、たぶん新品以外は売れないはず
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chainmail_boots, 1, 0), 80);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_boots, 1, 0), 2000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_boots, 1, 0), 400);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_boots, 1, 0), 200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.leather_boots, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chainmail_helmet, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_helmet, 1, 0), 2500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_helmet, 1, 0), 500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_helmet, 1, 0), 250);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.leather_helmet, 1, 0), 30);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chainmail_chestplate, 1, 0), 160);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_chestplate, 1, 0), 4000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_chestplate, 1, 0), 800);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_chestplate, 1, 0), 400);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.leather_chestplate, 1, 0), 50);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.chainmail_leggings, 1, 0), 140);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_leggings, 1, 0), 3500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_leggings, 1, 0), 700);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_leggings, 1, 0), 350);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.leather_leggings, 1, 0), 35);
-
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.diamond_horse_armor, 1, 0), 2000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.golden_horse_armor, 1, 0), 400);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Items.iron_horse_armor, 1, 0), 200);
-
-        /**Blocks: API本体の傾向に似せる*/
-        //ore
-
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.emerald_ore, 1, 0), 400);//エメラルドは鉱石だと金の二倍。
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.diamond_ore, 1, 0), 1500);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.quartz_ore, 1, 0), 140);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.redstone_ore, 1, 0), 60);
-
-        //Mineral block
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 0), 140);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 1), 150);//加工してるとちょっと高い
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.quartz_block, 1, 2), 150);//〃
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.quartz_stairs, 1, 0), 180);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.diamond_block, 1, 0), 9000);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.emerald_block, 1, 0), 135);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.redstone_block, 1, 0), 108);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.coal_block, 1, 0), 45);
-
-        //地形
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stonebrick), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.cactus, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.vine, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.waterlily, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.hardened_clay, 1, 0), 50);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stained_hardened_clay, 1, 32767), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.packed_ice, 1, 0), 5);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.netherrack, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.nether_brick, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.nether_brick_stairs, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.nether_brick_fence, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.end_stone, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.end_stone, 1, 0), 15);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.obsidian, 1, 0), 12);
-
-        //人工物系の地形
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.bookshelf, 1, 0), 10);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.cobblestone_wall, 1, OreDictionary.WILDCARD_VALUE), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.fence, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.fence_gate, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.iron_bars, 1, 0), 18);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.hay_block, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.pumpkin, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.lit_pumpkin, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.melon_block, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.glass_pane, 1, 0), 1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.tnt, 1, 0), 10);
-
-        //設置物
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stone_slab, 1, OreDictionary.WILDCARD_VALUE), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.wooden_slab, 1, OreDictionary.WILDCARD_VALUE), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.anvil, 1, 0), 1550);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.carpet, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.trapped_chest, 1, 0), 50);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.dispenser, 1, 0), 20);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.dropper, 1, 0), 8);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.daylight_detector, 1, 0), 110);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.enchanting_table, 1, 0), 1200);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.ender_chest, 1, 0), 150);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.end_portal, 1, 0), -1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.end_portal_frame, 1, 0), -1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.fire, 1, 0), -1);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.hopper, 1, 0), 250);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.ladder, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.lever, 1, 0), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.heavy_weighted_pressure_plate, 1, 0), 350);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.light_weighted_pressure_plate, 1, 0), 100);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.redstone_lamp, 1, 0), 120);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.tripwire_hook, 1, 0), 60);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stone_button, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.wooden_button, 1, 0), 0);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.torch, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.trapdoor, 1, 0), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stained_glass, 1, OreDictionary.WILDCARD_VALUE), 3);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.stained_glass_pane, 1, OreDictionary.WILDCARD_VALUE), 2);
-        MCEconomyAPI.addPurchaseItem(new ItemStack(Blocks.beacon, 1, 0), -1);
+        addPurchaseItem(new ItemStack(Items.stick), 2);
+        addPurchaseItem(new ItemStack(Items.bowl), 3);
+        addPurchaseItem(new ItemStack(Items.string), 4);
+        addPurchaseItem(new ItemStack(Items.feather), 1);
+        addPurchaseItem(new ItemStack(Items.gunpowder), 4);
+        addPurchaseItem(new ItemStack(Items.wheat_seeds), 1);
+        addPurchaseItem(new ItemStack(Items.wheat), 50);
+        addPurchaseItem(new ItemStack(Items.bread), 80);
+        addPurchaseItem(new ItemStack(Items.flint), 3);
+        addPurchaseItem(new ItemStack(Items.leather), 50);
+        addPurchaseItem(new ItemStack(Items.brick), 50);
+        addPurchaseItem(new ItemStack(Items.clay_ball), 30);
+        addPurchaseItem(new ItemStack(Items.reeds), 10);
+        addPurchaseItem(new ItemStack(Items.egg), 20);
+        addPurchaseItem(new ItemStack(Items.glowstone_dust), 100);
+        addPurchaseItem(new ItemStack(Items.dye, 1, 0), 30);//染料 イカスミ
+        addPurchaseItem(new ItemStack(Items.dye, 1, 1), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 2), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 3), 40);//染料 カカオ
+        addPurchaseItem(new ItemStack(Items.dye, 1, 4), 220);//染料 ラピス
+        addPurchaseItem(new ItemStack(Items.dye, 1, 5), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 6), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 7), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 8), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 9), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 10), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 11), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 12), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 13), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 14), 5);//染料
+        addPurchaseItem(new ItemStack(Items.dye, 1, 15), 10);//染料 骨粉
+        addPurchaseItem(new ItemStack(Items.sugar), 10);
+        addPurchaseItem(new ItemStack(Items.pumpkin_seeds), 2);
+        addPurchaseItem(new ItemStack(Items.melon_seeds), 2);
+        addPurchaseItem(new ItemStack(Items.blaze_rod), 10);
+        addPurchaseItem(new ItemStack(Items.gold_nugget), 440);
+        addPurchaseItem(new ItemStack(Items.nether_wart), 10);
+        addPurchaseItem(new ItemStack(Items.emerald), 300);
+        addPurchaseItem(new ItemStack(Items.nether_star), 8000);
+        addPurchaseItem(new ItemStack(Items.netherbrick), 20);
+        addPurchaseItem(new ItemStack(Items.quartz), 300);
 
         //液体
         addPurchaseFluid(FluidRegistry.WATER, 0.0001);
