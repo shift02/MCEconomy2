@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.4.5-1.7.0"//${project.minecraft.version}"
+version = "2.5.2.a-1.7.0"//${project.minecraft.version}"
 group= "shift.MCEconomy2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MCEconomy2"
 
