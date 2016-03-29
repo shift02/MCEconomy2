@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import shift.mceconomy2.api.purchase.IPurchaseItem;
 import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.IShopManager;
 import shift.mceconomy2.api.shop.ProductList;
@@ -152,14 +153,31 @@ public class MCEconomyAPI {
 		ShopManager.openShopGui(id, player, world, x, y, z);
 	}
 
+    /**
+     * addPurchaseItem Mobなどがアイテムを買い取る価格を判定するクラスを登録
+     * @param purchaseItem 登録するIPurchaseItemクラス
+     */
+    public static void addPurchaseItem(IPurchaseItem purchaseItem) {
+        ShopManager.addPurchaseItem(purchaseItem);
+    }
+
 	/**
-	 * addPurchaseItem Mobなどがアイテムを買い取る価格を登録
+	 * addPurchaseItem Mobなどがアイテムを買い取る価格をItemStackで登録
 	 * @param PurchaseItem 買い取りアイテム
 	 * @param amount 価格  -1で非売品に設定出来ます
 	 */
 	public static void addPurchaseItem(ItemStack PurchaseItem, int amount) {
 		ShopManager.addPurchaseItem(PurchaseItem, amount);
 	}
+
+    /**
+     * addPurchaseItem Mobなどがアイテムを買い取る価格を鉱石辞書名で登録
+     * @param oreName 買い取り対象となる鉱石辞書名
+     * @param amount 価格  -1で非売品に設定出来ます
+     */
+    public static void addPurchaseItem(String oreName, int amount) {
+        ShopManager.addPurchaseItem(oreName, amount);
+    }
 
 	/**
 	 * getPurchase アイテムの買い取り額を取得
@@ -181,8 +199,8 @@ public class MCEconomyAPI {
 
 	/**
 	 * addPurchaseItem Mobなどが流体を買い取る価格を登録
-	 * @param PurchaseItem 買い取る流体
-	 * @param amount 価格(1mB)  -1で非売品に設定出来ます
+	 * @param fluid 買い取る流体
+	 * @param mp 価格(1mB)  -1で非売品に設定出来ます
 	 */
 	public static void addPurchaseFluid(Fluid fluid, double mp) {
 		ShopManager.addPurchaseFluid(fluid, mp);
@@ -190,7 +208,7 @@ public class MCEconomyAPI {
 
 	/**
 	 * getPurchase 流体の買い取り額を取得
-	 * @param item 売る流体
+	 * @param fluid 売る流体
 	 * @return 価格(1mB)
 	 */
 	public static double getFluidPurchase(Fluid fluid) {
@@ -199,7 +217,7 @@ public class MCEconomyAPI {
 
 	/**
 	 * hasPurchase 流体に価格が設定されているか
-	 * @param item 調べる流体
+	 * @param fluid 調べる流体
 	 * @return 設定されていればtrue 非売品はfalseになります.
 	 */
 	public static boolean hasFluidPurchase(Fluid fluid) {
