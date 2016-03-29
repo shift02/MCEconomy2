@@ -537,7 +537,18 @@ public class MCEconomyAPI {
         addPurchaseItem(new ItemStack(Items.iron_horse_armor), 1000);
         addPurchaseItem(new ItemStack(Items.golden_horse_armor), 10000);
         addPurchaseItem(new ItemStack(Items.diamond_horse_armor), 20000);
-        addPurchaseItem("record", 500);
+        addPurchaseItem(new ItemStack(Items.record_13), 500);
+        addPurchaseItem(new ItemStack(Items.record_cat), 500);
+        addPurchaseItem(new ItemStack(Items.record_blocks), 500);
+        addPurchaseItem(new ItemStack(Items.record_chirp), 500);
+        addPurchaseItem(new ItemStack(Items.record_far), 500);
+        addPurchaseItem(new ItemStack(Items.record_mall), 500);
+        addPurchaseItem(new ItemStack(Items.record_mellohi), 500);
+        addPurchaseItem(new ItemStack(Items.record_stal), 500);
+        addPurchaseItem(new ItemStack(Items.record_strad), 500);
+        addPurchaseItem(new ItemStack(Items.record_ward), 500);
+        addPurchaseItem(new ItemStack(Items.record_11), -1);
+        addPurchaseItem(new ItemStack(Items.record_wait), 500);
 
         //食べ物 Block
         addPurchaseItem(new ItemStack(Blocks.cake), -1);//ブロックのケーキ
