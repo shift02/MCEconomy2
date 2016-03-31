@@ -12,6 +12,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import shift.mceconomy2.api.event.PriceEvent;
+import shift.mceconomy2.api.purchase.IPurchaseItem;
+import shift.mceconomy2.api.purchase.PurchaseItemStack;
+import shift.mceconomy2.api.purchase.PurchaseOreDictionary;
 import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.IShop;
 import shift.mceconomy2.api.shop.IShopManager;
@@ -25,7 +28,9 @@ public class ShopManager implements IShopManager {
 
     private final ArrayList<IShop> shopList = new ArrayList<IShop>();
 
-    private static final HashMap<ItemStack, Integer> purchaseList = new HashMap<ItemStack, Integer>();
+    private static final ArrayList<IPurchaseItem> purchaseItems=new ArrayList<IPurchaseItem>();
+    private static IPurchaseItem cachedItem;
+
 
     private static final HashMap<Integer, Double> purchaseFluidList = new HashMap<Integer, Double>();
 
@@ -116,9 +121,20 @@ public class ShopManager implements IShopManager {
     }
 
     @Override
-    public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer) {
-        purchaseList.put(par1ItemStack, par2Integer);
+    public void addPurchaseItem(IPurchaseItem purchaseItem) {
+        purchaseItems.add(purchaseItem);
     }
+
+    @Override
+    public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer) {
+        purchaseItems.add(new PurchaseItemStack(par1ItemStack, par2Integer));
+    }
+
+    @Override
+    public void addPurchaseItem(String par1String, Integer par2Integer) {
+        purchaseItems.add(new PurchaseOreDictionary(par1String, par2Integer));
+    }
+
 
     @Override
     public int getPurchase(ItemStack item) {
@@ -126,18 +142,20 @@ public class ShopManager implements IShopManager {
             return -2;
         }
 
-        Iterator iterator = this.purchaseList.entrySet().iterator();
-        Entry entry;
-
-        do {
-            if (!iterator.hasNext()) {
-                return -2;
+        IPurchaseItem purchaseItem = null;
+        if (cachedItem != null && cachedItem.isMatch(item)) {
+            purchaseItem = cachedItem;
+        } else {
+            for (IPurchaseItem it : purchaseItems) {
+                if (it.isMatch(item)) {
+                    purchaseItem = cachedItem = it;
+                    break;
+                }
             }
+        }
+        if (purchaseItem == null) return -2;
 
-            entry = (Entry) iterator.next();
-        } while (!this.func_151397_a(item, (ItemStack) entry.getKey()));
-
-        int old = (Integer) entry.getValue();
+        int old = purchaseItem.getPrice(item);
 
         PriceEvent event = new PriceEvent(item, old);
         event.setNewPrice(old);
@@ -146,17 +164,13 @@ public class ShopManager implements IShopManager {
 
         if (old != event.getNewPrice()) return event.getNewPrice();
 
-        return (Integer) entry.getValue();
-
-    }
-
-    private boolean func_151397_a(ItemStack p_151397_1_, ItemStack p_151397_2_) {
-        return p_151397_2_.getItem() == p_151397_1_.getItem() && (p_151397_2_.getItemDamage() == 32767 || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());
+        return old;
     }
 
     @Override
     public boolean hasPurchase(ItemStack item) {
-        return (this.getPurchase(item) != -1 && this.getPurchase(item) != -2);
+        int t=getPurchase(item);
+        return t != -1 && t != -2;
     }
 
     @Override

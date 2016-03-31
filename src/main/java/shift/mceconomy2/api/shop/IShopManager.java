@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
+import shift.mceconomy2.api.purchase.IPurchaseItem;
 
 /**
  * Shopを管理するClass
@@ -28,7 +29,11 @@ public interface IShopManager {
 
     public void openShopGui(int id, EntityPlayer player, World world, int x, int y, int z);
 
+    public void addPurchaseItem(IPurchaseItem purchaseItem);
+
     public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer);
+
+    public void addPurchaseItem(String par1String, Integer par2Integer);
 
     public int getPurchase(ItemStack item);
 
