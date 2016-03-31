@@ -1,9 +1,9 @@
 package shift.mceconomy2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,9 +28,11 @@ public class ShopManager implements IShopManager {
 
     private final ArrayList<IShop> shopList = new ArrayList<IShop>();
 
-    private static final ArrayList<IPurchaseItem> purchaseItems=new ArrayList<IPurchaseItem>();
+    private static final ArrayList<IPurchaseItem> purchaseItems = new ArrayList<IPurchaseItem>();
     private static IPurchaseItem cachedItem;
+    private static boolean hasSort = false;
 
+    private static PurchaseComparable purchaseComparable = new PurchaseComparable();
 
     private static final HashMap<Integer, Double> purchaseFluidList = new HashMap<Integer, Double>();
 
@@ -123,36 +125,59 @@ public class ShopManager implements IShopManager {
     @Override
     public void addPurchaseItem(IPurchaseItem purchaseItem) {
         purchaseItems.add(purchaseItem);
+
+        this.hasSort = true;
+
     }
 
     @Override
     public void addPurchaseItem(ItemStack par1ItemStack, Integer par2Integer) {
-        purchaseItems.add(new PurchaseItemStack(par1ItemStack, par2Integer));
+        this.addPurchaseItem(new PurchaseItemStack(par1ItemStack, par2Integer));
     }
 
     @Override
     public void addPurchaseItem(String par1String, Integer par2Integer) {
-        purchaseItems.add(new PurchaseOreDictionary(par1String, par2Integer));
+        this.addPurchaseItem(new PurchaseOreDictionary(par1String, par2Integer));
     }
-
 
     @Override
     public int getPurchase(ItemStack item) {
+
         if (item == null) {
             return -2;
         }
 
         IPurchaseItem purchaseItem = null;
         if (cachedItem != null && cachedItem.isMatch(item)) {
+
             purchaseItem = cachedItem;
+
         } else {
+
+            if (this.hasSort) {
+                Collections.sort(purchaseItems, new PurchaseComparable());
+                hasSort = false;
+            }
+
             for (IPurchaseItem it : purchaseItems) {
+
                 if (it.isMatch(item)) {
-                    purchaseItem = cachedItem = it;
+
+                    purchaseItem = it;
+
+                    if (it.getPriority() <= 5) {
+                        cachedItem = it;
+                    } else {
+                        cachedItem = null;
+                    }
+
                     break;
                 }
+
             }
+
         }
+
         if (purchaseItem == null) return -2;
 
         int old = purchaseItem.getPrice(item);
@@ -169,7 +194,7 @@ public class ShopManager implements IShopManager {
 
     @Override
     public boolean hasPurchase(ItemStack item) {
-        int t=getPurchase(item);
+        int t = getPurchase(item);
         return t != -1 && t != -2;
     }
 
@@ -221,6 +246,22 @@ public class ShopManager implements IShopManager {
     @Override
     public boolean hasEntityPurchase(Entity entity) {
         return (this.getEntityPurchase(entity) != -1 && this.getEntityPurchase(entity) != -2);
+    }
+
+    public static class PurchaseComparable implements Comparator<IPurchaseItem> {
+
+        @Override
+        public int compare(IPurchaseItem o1, IPurchaseItem o2) {
+
+            if (o1.getPriority() > o2.getPriority()) {
+                return 1;
+            } else if (o1.getPriority() < o2.getPriority()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
     }
 
 }

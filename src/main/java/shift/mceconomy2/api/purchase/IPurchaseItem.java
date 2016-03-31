@@ -8,6 +8,16 @@ import net.minecraft.item.ItemStack;
  * このクラスによって基本の価格が決定された後にPriceEventが発生する
  */
 public interface IPurchaseItem {
+
+    /**
+     * 価格決定の優先度 <br>
+     * 0に近いほど優先される<br>
+     * デフォルト 5 <br>
+     * 鉱石辞書使用 8 <br>
+     * @return
+     */
+    public int getPriority();
+
     /**
      * 引数のItemStackがこのインスタンスで扱っているかを返す
      * @param itemStack
@@ -21,4 +31,5 @@ public interface IPurchaseItem {
      * @return 売却価格
      */
     public int getPrice(ItemStack itemStack);
+
 }

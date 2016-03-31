@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
  * 前のバージョンとの互換性を保つためのクラス
  */
 public class PurchaseItemStack implements IPurchaseItem {
+
     /**
      * このクラスが保持するアイテム
      */
@@ -17,9 +18,9 @@ public class PurchaseItemStack implements IPurchaseItem {
      */
     protected int price;
 
-    public PurchaseItemStack(ItemStack itemStack, int price){
-        this.itemStack=itemStack;
-        this.price=price;
+    public PurchaseItemStack(ItemStack itemStack, int price) {
+        this.itemStack = itemStack;
+        this.price = price;
     }
 
     @Override
@@ -30,5 +31,10 @@ public class PurchaseItemStack implements IPurchaseItem {
     @Override
     public int getPrice(ItemStack itemStack) {
         return price;
+    }
+
+    @Override
+    public int getPriority() {
+        return 5;
     }
 }
