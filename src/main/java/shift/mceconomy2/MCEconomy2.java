@@ -19,7 +19,7 @@ import shift.mceconomy2.proxy.CommonProxy;
 public class MCEconomy2 {
 
     public static final String MODID = "mceconomy2";
-    public static final String VERSION = "2.5.2";
+    public static final String VERSION = "2.5.3";
 
     public static final String DEPENDENCY = "";//"before:SextiarySector";
 
