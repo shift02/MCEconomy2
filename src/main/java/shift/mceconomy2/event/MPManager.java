@@ -2,6 +2,7 @@ package shift.mceconomy2.event;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.common.util.FakePlayer;
 import shift.mceconomy2.Config;
 import shift.mceconomy2.EntityPropertieMP;
 import shift.mceconomy2.api.IMPManager;
@@ -151,7 +152,11 @@ public class MPManager implements IMPManager {
     }
 
     public static void sendPacket(EntityPlayer player) {
+
+        if (player instanceof FakePlayer) return;
+
         PacketHandler.INSTANCE.sendTo(new MessagePlayerProperties(player), (EntityPlayerMP) player);
+
     }
 
 }
